@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ActFormer: A GAN Transformer Framework towards General Action-Conditioned 3D Human Motion Generation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <!-- Bootstrap -->
+    <link href="actformer_files/bootstrap-4.4.1.css" rel="stylesheet">
+  </head>
+  <body>
+    <section>
+      <div class="jumbotron text-center mt-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1>ActFormer: A GAN Transformer Framework towards General Action-Conditioned 3D Human Motion Generation</h1>
+				
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>Abstract</h2>
+            <div class="row" style="margin-top:5px">
+              <div class="col-12 text-center">
+                <img width="70%" class="img-fluid" src="images/intro.png" alt="">
+              </div>
+            </div>
+				  <br><br>
+            <p class="text-left">
+              We present a scalable GAN Transformer framework for general action-conditioned 3D human motion generation, including not only single-person actions but also multi-person interactive actions. 
+              Our approach consists of a powerful Action-conditioned motion transFormer (ActFormer) under a GAN training scheme, equipped with a Gaussian Process latent prior. 
+              Such a design combines the strong spatio-temporal representation capacity of Transformer, superiority in generative modeling of GAN, and inherent temporal correlations from latent prior. 
+              Furthermore, ActFormer can be naturally extended to multi-person motions by alternately modeling temporal correlations and human interactions with Transformer encoders. 
+              We validate our approach by comparison with other methods in larger-scale benchmarks, including NTU RGB+D 120 and BABEL. 
+              We also introduce a new synthetic dataset of complex multi-person combat behaviors to facilitate research on multi-person motion generation. 
+              Our method achieves leading performance over SOTA methods on both single-person and multi-person motion generation tasks, indicating a hopeful step towards a universal human motion generator.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+	 <br>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>Method</h2>
+			    <hr style="margin-top:0px">
+            <p class="text-left">
+              Given a latent vector sequence sampled from Gaussian Process (GP) prior and an action label \([act]\), the model can synthesize either a single-person (top stream) or a multi-person (bottom stream) motion sequence.
+              The model is trained under a GAN scheme. 
+              <br>
+              <b>Single-person setting:</b> The \(T\)-length latent vector sequence along with the action label \([act]\) are regarded as \(T+1\) input tokens.
+              Stacked Temporal-transFormer (T-Former) layers model the temporal correlations among various time steps represented by tokens.
+              Finally, the \([act]\) token is discarded while the rest \(T\) tokens are projected into a sequence of human motions \(\{ M_t | t \in \{ 1, ..., T \} \}\).
+              <br>
+              <b>Multi-person setting:</b> The \(T+1\) input tokens are shared \(P\) times to generate a \(T\)-frame motion sequence with \(P\) persons.
+              This strategy enforces the synchronization among multiple persons in a group from the input stage.
+              After that, stacked Interaction-transFormer (I-Former) and Temporal-transFormer (T-Former) layers alternately encode human interactions and temporal correlations.
+              All \([act]\) tokens are discarded finally, with the remaining \(P \cdot T\) tokens projected to a motion sequence \(M_t = \{ M^p_t | p \in \{ 1, ..., P \} \} \).
+			      </p>
+          </div>
+        </div>
+        <div class="row" style="margin-top:5px">
+          <div class="col-12 text-center">
+            <img class="img-fluid" src="images/mogen.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section> -->
+	  <br>
+	      <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>Generation results</h2>
+			      <hr style="margin-top:0px">
+            <p class="text-left">
+              Generated samples for single-person actions from BABEL.
+            </p>
+        </div>        
+        <div class="row">
+          <div class="col-12 text-center">  
+            <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/Dance.mp4" type="video/mp4">
+            </video> 
+            <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/Touch_object.mp4" type="video/mp4">
+            </video> 
+            <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/Swing_body_part.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+		<div class="row">
+      <div class="col-12 text-center">
+			  <hr style="margin-top:0px">
+            <p class="text-left"> 
+              Generated samples for multi-person actions from NTU-2P and GTA Combat.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">  
+              <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="./images/Push.mp4" type="video/mp4">
+              </video> 
+              <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="./images/Cheers_drink.mp4" type="video/mp4">
+              </video> 
+              <video width="75%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="./images/Combat.mp4" type="video/mp4">
+              </video> 
+            </div>
+          </div>
+      </div>
+    </div>
+    </section>
+	  	 <br><br>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>GTA Combat dataset</h2>
+			      <hr style="margin-top:0px">
+            <p class="text-left">
+              To facilitate the research on multi-person motion generation, we construct a GTA Combat dataset through the <a href="https://www.rockstargames.com/V/" target="_blank">Grand Theft Auto V</a>'s gaming engine.
+              In this synthetic multi-person MoCap dataset, we collect \(\sim 7K\) combat motion sequences each with 2 to 5 participants.
+              Here are samples from our dataset.
+            </p>
+          </div>
+        </div>
+		<div class="row">
+          <div class="col-12 text-center">
+            <video width="49%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/vid_02e1738b9f254bfd9e874a53a99f0cf2.mp4" type="video/mp4">
+            </video> 
+            <video width="49%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/vid_0162e6d47828475cb926d37a2f6bb725.mp4" type="video/mp4">
+            </video> 
+            <video width="49%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/vid_009635d9856f4dbebbc80897736552d6.mp4" type="video/mp4">
+            </video> 
+            <video width="49%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="./images/vid_00411041ec32426fa2131ecb8b2a27f4.mp4" type="video/mp4">
+            </video> 
+          </div>
+        </div>
+      </div>
+    </section>
+	  <br>
+    <footer class="text-center">
+	  <div class="container">
+        <div class="row ">
+          <div class="col-12">
+		
+		</div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./actformer_files/jquery-3.4.1.min.js.download"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./actformer_files/popper.min.js.download"></script>
+    <script src="./actformer_files/bootstrap-4.4.1.js.download"></script>
+  
+</body></html>
